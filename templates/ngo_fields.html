@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="img/favicon.png" type="image/png">
+        <title>Fields</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/vendors/linericon/style.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="/static/vendors/nice-select/css/nice-select.css">
+        <!-- main css -->
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/responsive.css">    
+    </head>
+    <style>
+body, html {
+  height: 80%;
+  margin-top:40px;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("/static/img/banner/Banner_all.jpg");
+
+  /* Full height */
+  height: 20%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
+
+<body>
+    <!--================ Start Header Menu Area =================-->
+     <header class="header_area">
+        <div class="main_menu">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <a class="navbar-brand logo_h" href="#"><img src="/static/img/logo.ico" alt=""></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav menu_nav ml-auto">
+                                <li class="nav-item"><a class="nav-link" href="/home"  style="color: black">Home</a></li> 
+                                <li class="nav-item submenu dropdown ">
+                                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"style="color:black">WORK</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item" ><a class="nav-link" href="/fields"style="color:green">FIELDS</a>
+                                        <li class="nav-item"><a class="nav-link" href="/ngodetail"style="color:black">NGOs</a>
+                                       {% if user.is_authenticated %}   
+                                       <li class="nav-item "><a class="nav-link" href="/events" style="color:black">UPCOMING EVENTS</a> 
+                                        {% endif %}
+
+                                        
+                                    </ul>
+                                </li> 
+                               
+
+                                {% if user.is_authenticated %}
+                                <li class="nav-item"><a class="nav-link" href="/profile/"style="color:black">Profile</a>
+                                <li class="nav-item"><a class="nav-link" href="/logout/"style="color:black">LogOut</a>
+
+                                {% else %}
+
+                                <li class="nav-item"><a class="nav-link" href="/register"style="color:black">Register</a>
+                                <li class="nav-item"><a class="nav-link" href="/login" data-toggle="modal" data-target="#myModal"style="color:black">Log in</a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
+
+                                <li class="nav-item"><a class="nav-link" href="/addQuestion" style="color: black">Discussion</a>
+
+                                {% else %}    
+
+                                <li class="nav-item"><a class="nav-link" href="/allQuestions"style="color:black">Discussion</a>
+
+                                {% endif %}    
+
+                                <li class="nav-item"><a class="nav-link" href="/contact"style="color:black">Contact</a></li>
+                            </ul>
+                        </div> 
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!--================ End Header Menu Area =================-->
+        
+    
+        
+    <!--================ Home Banner Area =================-->
+   <br><br><br>
+<div class="bg">
+    <div class="text-center" >
+       <br> 
+        <h1 style="color:indigo">FIELDS</h1>
+    </div> 
+</div>
+    <!--================ End Home Banner Area =================-->
+	
+	<!--================ Start Causes Area =================-->
+	<section class="causes_area">
+        <div class="container">
+            <div class="main_title">
+                <h2 > DIFFERENT FIELDS</h2>
+                <p>Join the work which pleases you :) </p>
+            </div>
+            <div class="row">
+                {% for i in fields %}
+                
+                    <div class="col-lg-4 col-md-4">
+                        <a href="{% url 'ngofields' i.id %}">
+                        <div class="single_causes">
+                            <h4>{{i.name}}</h4>
+                            <img src="{{i.imageurl}}"alt="">
+                            
+                        </div>
+                        </a>
+                    </div>
+                
+                {% endfor %}
+            </div>
+        </div>
+    <!--================ End Causes Area =================-->
+
+	<!--================ Start Features Cause section =================-->
+
+	<section class="features_causes">
+        <div class="container">
+            <div class="main_title">
+                <h2>Servers of Society</h2>
+                <p>Creepeth called face upon face yielding midst is after moveth </p>
+            </div>
+
+            <div class="row">
+                {% for i in ngoAre1 %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <figure>
+                                <a href="/ngodetail"><img class="card-img-top img-fluid" src={{i.imageurl}} alt="Card image cap" style="height: 250px;width: 290px">
+                            </figure>
+                            <div class="card_inner_body">
+                                <h4 class="card-title">{{i.name}}</h4>
+                                <p class="card-text">
+                                    {{i.about|truncatewords:25}}
+                                </p>
+                                <div class="d-flex justify-content-between raised_goal">
+                                <!--  <a href="{{i.ngoUrl}}" target="_blank">join us: {{i.ngoUrl}}</a>-->
+                                
+                                </div>
+                                <div class="d-flex justify-content-between donation align-items-center">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+
+                 
+                {% endfor %}    
+            </div>
+        </div>    
+    </section>
+    <!--================ End Features Cause section =================-->
+
+	<!--================ Start CTA Area =================-->
+	<div class="cta-area section_gap overlay">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <h1>Become a volunteer</h1>
+                    <p style="color:white">
+                        As long as you are standing, give a hand to those who have fallen.
+                    </p>
+                    <a href="/register" class="primary_btn yellow_btn rounded">join with us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================ End CTA Area =================-->
+        
+    <!--================ Start footer Area  =================-->    
+   <footer>
+        <div class="footer-area">
+            <div class="container">
+                <div class="row section_gap">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title large_title">Our Mission</h4>
+                            <p>
+                                To provide a common platform for faculty and students of BHU.To help the needy in different fields of their interests....
+                            </p>
+                            <p>
+                                Be the beacon of light in someone's darkness....  
+                            </p>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Quick Links</h4>
+                            <ul class="list">
+                                <li><a href="/home">Home</a></li>
+                                <li><a href="/fields">Fields</a></li>
+                                <li><a href="/ngodetail">NGOs</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a href="/events">Events</a></li>
+                                <li><a href="/logout/">LogOut</a></li>
+
+                                {% else %}
+                                <li><a href="/register">Register</a></li>
+                                <li><a href="/login/">LogIn</a></li>
+                                {% endif %}
+
+                                <li><a href="/contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Contact Us</h4>
+                            <div class="ml-40">
+                                <p class="sm-head">
+                                    <span class="fa fa-location-arrow"></span>
+                                    Head Office
+                                </p>
+                                <p>Department of Computer Science, Banaras Hindu University, Varanasi</p>
+    
+                                <p class="sm-head">
+                                    <span class="fa fa-phone"></span>
+                                    Phone Number
+                                </p>
+                                <p>
+                                    +123 456 7890 <br>
+                                    +123 456 7890
+                                </p>
+    
+                                <p class="sm-head">
+                                    <span class="fa fa-envelope"></span>
+                                    Email
+                                </p>
+                                <p>
+                                    akankshaupadhyay.alld@gmail.com <br>
+                                    poojayadav@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+    <!--================ End footer Area  =================-->
+      
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/popper.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/stellar.js"></script>
+        <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="js/jquery.ajaxchimp.min.js"></script>
+        <script src="js/mail-script.js"></script>
+        <!--gmaps Js-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+        <script src="js/gmaps.min.js"></script>
+        <script src="js/theme.js"></script>
+    </body>
+</html>

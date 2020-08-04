@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="img/favicon.png" type="image/png">
+        <title>answers</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/vendors/linericon/style.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="/static/vendors/nice-select/css/nice-select.css">
+        <!-- main css -->
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/responsive.css">
+    </head>
+     <style>
+body, html {
+  height: 80%;
+  margin-top:40px;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("/static/img/banner/Banner_all.jpg");
+
+  /* Full height */
+  height: 20%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+</style>
+
+
+<body>
+<!--================ Start Header Menu Area =================-->
+ <header class="header_area">
+        <div class="main_menu">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <a class="navbar-brand logo_h" href="#"><img src="/static/img/logo.ico" alt=""></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav menu_nav ml-auto">
+                                <li class="nav-item active "><a class="nav-link" href="/home">Home</a></li> 
+                                <li class="nav-item submenu dropdown ">
+                                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"style="color:black">WORK</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item" ><a class="nav-link" href="/fields"style="color:black">FIELDS</a>
+                                        <li class="nav-item"><a class="nav-link" href="/ngodetail"style="color:black">NGOs</a>
+                                       {% if user.is_authenticated %}   
+                                       <li class="nav-item "><a class="nav-link" href="/events" style="color:black">UPCOMING EVENTS</a> 
+                                        {% endif %}
+
+                                        
+                                    </ul>
+                                </li> 
+                               
+
+                                {% if user.is_authenticated %}
+                                <li class="nav-item"><a class="nav-link" href="/profile/"style="color:black">Profile</a>
+                                <li class="nav-item"><a class="nav-link" href="/logout/"style="color:black">LogOut</a>
+
+                                {% else %}
+
+                                <li class="nav-item"><a class="nav-link" href="/register"style="color:black">Register</a>
+                                <li class="nav-item"><a class="nav-link" href="/login" data-toggle="modal" data-target="#myModal"style="color:black">Log in</a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
+
+                                <li class="nav-item"><a class="nav-link" href="/addQuestion" style="color: black">Discussion</a>
+
+                                {% else %}    
+
+                                <li class="nav-item"><a class="nav-link" href="/allQuestions"style="color:black">Discussion</a>
+
+                                {% endif %}    
+
+                                <li class="nav-item"><a class="nav-link" href="/contact"style="color:black">Contact</a></li>
+                            </ul>
+                        </div> 
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!--================ End Header Menu Area =================-->     
+
+
+        
+    <!--================ Home Banner Area =================-->
+    
+    <br><br><br>
+<div class="bg">
+    <div class="text-center" >
+       <br> 
+        <h1 style="color:indigo;">ANSWERS</h1>
+    </div> 
+</div>
+    <!--================ End Home Banner Area =================-->
+
+        
+        <!--================Blog Area =================-->
+        <section class="blog_area single-post-area section_gap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1 posts-list">
+                        <div class="single-post row">
+                            <div class="col-lg-12">
+                                <div class="feature-img">
+                                    <h2 style="color: green">{{myquestionIs.questionIs}}</h2>
+                                </div>					
+                             </div>
+                        </div>
+
+                        {% if answersAre %}
+                        <div style="margin: auto;"class="row">     
+
+                            <div class="comments-area col-lg-12">
+                                <h4>{{noOfanswer}} Answers</h4>
+                                {% for a in answersAre %}
+                                <div class="comment-list">
+                                    <div class="single-comment justify-content-between d-flex">
+                                        <div class="user justify-content-between d-flex">
+                                            <div class="thumb">
+                                                <img src="img/blog/c1.jpg" alt="">
+                                            </div>
+                                            <div class="desc">
+                                                <h5><a href="#">{{a.answeredBy.user.first_name}} {{a.answeredBy.user.last_name}}</a></h5>
+                                                <p class="date">{{a.answereddDateTime}}</p>
+                                                <p style="color:SlateBlue"class="comment">
+                                                    {{a.answerIs}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div> 
+                                {% endfor %} 
+                                                                            
+                            </div>
+                        </div>   
+                        {% endif %} 
+            {% if user.is_authenticated %}
+                        <div class="comment-form">
+                            <h4>Leave a Reply</h4>
+                            <form method="post" action="/reply/"> 
+                {% csrf_token %}                                
+                                <div class="form-group">
+                                    <textarea class="form-control mb-10" rows="5" name="answeris" placeholder="Your Answer" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Answer'" required=""></textarea>
+                                </div>
+                                <input type="hidden" name="qid" value="{{myquestionIs.id}}">
+                                <button style="float: right;" type="submit" class="primary-btn primary_btn">Post</button>    
+                            </form>
+                            <br>
+            {% else %}
+            <h2><a style="color: orange"href="/login">PLEASE LOGIN</a></h2>
+                    {% endif %}                
+                            
+                        </div>   
+             
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================Blog Area =================-->
+        
+           <!--================ Start footer Area  =================-->    
+   <footer>
+        <div class="footer-area">
+            <div class="container">
+                <div class="row section_gap">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title large_title">Our Mission</h4>
+                            <p>
+                                To provide a common platform for faculty and students of BHU.To help the needy in different fields of their interests....
+                            </p>
+                            <p>
+                                Be the beacon of light in someone's darkness....  
+                            </p>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Quick Links</h4>
+                            <ul class="list">
+                                <li><a href="/home">Home</a></li>
+                                <li><a href="/fields">Fields</a></li>
+                                <li><a href="/ngodetail">NGOs</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a href="/events">Events</a></li>
+                                <li><a href="/logout/">LogOut</a></li>
+
+                                {% else %}
+                                <li><a href="/register">Register</a></li>
+                                <li><a href="/login/">LogIn</a></li>
+                                {% endif %}
+
+                                <li><a href="/contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Contact Us</h4>
+                            <div class="ml-40">
+                                <p class="sm-head">
+                                    <span class="fa fa-location-arrow"></span>
+                                    Head Office
+                                </p>
+                                <p>Department of Computer Science, Banaras Hindu University, Varanasi</p>
+    
+                                <p class="sm-head">
+                                    <span class="fa fa-phone"></span>
+                                    Phone Number
+                                </p>
+                                <p>
+                                    +123 456 7890 <br>
+                                    +123 456 7890
+                                </p>
+    
+                                <p class="sm-head">
+                                    <span class="fa fa-envelope"></span>
+                                    Email
+                                </p>
+                                <p>
+                                    akankshaupadhyay.alld@gmail.com <br>
+                                    poojayadav@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+    <!--================ End footer Area  =================-->
+        
+        
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/popper.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/stellar.js"></script>
+        <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="js/jquery.ajaxchimp.min.js"></script>
+        <script src="js/mail-script.js"></script>
+        <script src="js/theme.js"></script>
+    </body>
+</html>

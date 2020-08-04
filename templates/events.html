@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="img/favicon.png" type="image/png">
+        <title>Events</title>
+        <!-- Bootstrap CSS -->
+       <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/vendors/linericon/style.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="/static/vendors/nice-select/css/nice-select.css">
+        <!-- main css -->
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/responsive.css">
+    </head>
+     <style>
+body, html {
+  height: 80%;
+  margin-top:40px;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("/static/img/banner/Banner_all.jpg");
+
+  /* Full height */
+  height: 20%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+p{
+    color: #818182;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 10%;
+}
+label{
+    font-weight: 600;
+}
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+</style>
+<body>
+        
+    <!--================ Start Header Menu Area =================-->
+     <header class="header_area">
+        <div class="main_menu">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <a class="navbar-brand logo_h" href="#"><img src="/static/img/logo.ico" alt=""></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav menu_nav ml-auto">
+                                <li class="nav-item "><a class="nav-link" href="/home" style="color: black">Home</a></li> 
+                                <li class="nav-item submenu dropdown ">
+                                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"style="color:black">WORK</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item" ><a class="nav-link" href="/fields"style="color:black">FIELDS</a>
+                                        <li class="nav-item"><a class="nav-link" href="/ngodetail"style="color:black">NGOs</a>
+                                       {% if user.is_authenticated %}   
+                                       <li class="nav-item "><a class="nav-link" href="/events" style="color:green">UPCOMING EVENTS</a> 
+                                        {% endif %}
+
+                                        
+                                    </ul>
+                                </li> 
+                               
+
+                                {% if user.is_authenticated %}
+                                <li class="nav-item"><a class="nav-link" href="/profile/"style="color:black">Profile</a>
+                                <li class="nav-item"><a class="nav-link" href="/logout/"style="color:black">LogOut</a>
+
+                                {% else %}
+
+                                <li class="nav-item"><a class="nav-link" href="/register"style="color:black">Register</a>
+                                <li class="nav-item"><a class="nav-link" href="/login" data-toggle="modal" data-target="#myModal"style="color:black">Log in</a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
+
+                                <li class="nav-item"><a class="nav-link" href="/addQuestion" style="color: black">Discussion</a>
+
+                                {% else %}    
+
+                                <li class="nav-item"><a class="nav-link" href="/allQuestions"style="color:black">Discussion</a>
+
+                                {% endif %}    
+
+                                <li class="nav-item"><a class="nav-link" href="/contact"style="color:black">Contact</a></li>
+                            </ul>
+                        </div> 
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!--================ End Header Menu Area =================-->
+        
+    <!--================ Home Banner Area =================-->
+    
+    <br><br><br>
+    <div class="bg">
+        <div class="text-center" >
+       <br> 
+        <h1 style="color:indigo;">Events</h1>
+    </div> 
+    </div>
+
+    <!--================ End Home Banner Area =================-->
+
+	<!--================ Start Recent Event Area =================-->
+            <div class="container">
+            <div class="main_title">
+                <br>
+                <br>
+
+                <button id="myBtn" class="btn btn-success" style="float: right;">Add Events</button><br>
+
+            </div>
+
+             <!-- The Modal -->
+
+                        <div id="myModal" class="modal">
+
+                          <!-- Modal content -->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                                <h2> Add Events </h2>
+
+                              <span class="close">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                <br>
+                              <div class="#">
+                                            <form contact_form" action="/events/" method="post" id="contactForm" novalidate="novalidate" autocomplete="off">{% csrf_token %}
+                                        
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="eventTitle" name="eventTitle" required placeholder="Event Title">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <textarea type="text" class="form-control" id="eventDescription" name="eventDescription" required placeholder="Event Description" rows="5"></textarea>
+                                            </div>
+                                                <br>
+                                            <div style="float: right;">
+                                                <button type="submit" value="submit" class="btn primary_btn">Submit</button>
+                                            </div>
+                                            </form>
+                                        </div>
+                                        <br>
+                            </div>
+                            <br>
+                           
+                          </div>
+
+                        </div>
+
+            <!-- modal ends -->
+        <h3>{{msg}}</h3>
+                        <div class="row">
+                            {% for i in eve %}
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="alert alert-success">
+                                        <h4 class="title">
+                                            {{i.eventTitle}}
+                                        </h4>
+                                        <p>
+                                         {{i.eventDescription}}
+                                        </p>
+                                       <hr>
+                                      {{i.createdDateTime|date}}                                        
+                                    </div>
+                                </div> 
+
+                                
+                              {% endfor %}   
+                        </div>
+              
+        </div>
+    <br>
+    <!--================ End Recent Event Area =================-->
+
+	
+    <!--================ Start footer Area  =================-->	
+    <footer>
+        <div class="footer-area">
+            <div class="container">
+                <div class="row section_gap">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title large_title">Our Mission</h4>
+                            <p>
+                                To provide a common platform for faculty and students of BHU.To help the needy in different fields of their interests....
+                            </p>
+                            <p>
+                                Be the beacon of light in someone's darkness....  
+                            </p>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Quick Links</h4>
+                            <ul class="list">
+                                <li><a href="/home">Home</a></li>
+                                <li><a href="/fields">Fields</a></li>
+                                <li><a href="/ngodetail">NGOs</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a href="/events">Events</a></li>
+                                <li><a href="/logout/">LogOut</a></li>
+
+                                {% else %}
+                                <li><a href="/register">Register</a></li>
+                                <li><a href="/login/">LogIn</a></li>
+                                {% endif %}
+
+                                <li><a href="/contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Contact Us</h4>
+                            <div class="ml-40">
+                                <p class="sm-head">
+                                    <span class="fa fa-location-arrow"></span>
+                                    Head Office
+                                </p>
+                                <p>Department of Computer Science, Banaras Hindu University, Varanasi</p>
+    
+                                <p class="sm-head">
+                                    <span class="fa fa-phone"></span>
+                                    Phone Number
+                                </p>
+                                <p>
+                                    +123 456 7890 <br>
+                                    +123 456 7890
+                                </p>
+    
+                                <p class="sm-head">
+                                    <span class="fa fa-envelope"></span>
+                                    Email
+                                </p>
+                                <p>
+                                    akankshaupadhyay.alld@gmail.com <br>
+                                    poojayadav@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+    <!--================ End footer Area  =================-->  
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="/static/js/jquery-3.2.1.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+     <!--    <script src="/static/js/mail-script.js"></script>
+        <script src="/static/js/theme.js"></script> -->
+        <script>
+                        // Get the modal
+                        var modal = document.getElementById('myModal');
+
+                        // Get the button that opens the modal
+                        var btn = document.getElementById("myBtn");
+
+                        // Get the <span> element that closes the modal
+                        var span = document.getElementsByClassName("close")[0];
+
+                        // When the user clicks the button, open the modal 
+                        btn.onclick = function() {
+                          modal.style.display = "block";
+                        }
+
+                        // When the user clicks on <span> (x), close the modal
+                        span.onclick = function() {
+                          modal.style.display = "none";
+                        }
+
+                        // When the user clicks anywhere outside of the modal, close it
+                        window.onclick = function(event) {
+                          if (event.target == modal) {
+                            modal.style.display = "none";
+                          }
+                        }
+                        </script>
+
+    </body>
+</html>

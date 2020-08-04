@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="/static/img/favicon.png" type="image/png">
+        <title>Register</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/vendors/linericon/style.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="/static/vendors/nice-select/css/nice-select.css">
+        <!-- main css -->
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/responsive.css">
+    </head>
+    <style>
+body, html {
+  height: 80%;
+  margin-top: 40px;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("/static/img/banner/Banner_all.jpg");
+
+  /* Full height */
+  height: 20%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
+<body>
+        
+    <!--================ Start Header Menu Area ========a=========-->
+    <header class="header_area">
+        <div class="main_menu">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <a class="navbar-brand logo_h" href="#"><img src="/static/img/logo.ico" alt=""></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav menu_nav ml-auto">
+                                <li class="nav-item "><a class="nav-link" href="/home" style="color: black">Home</a></li> 
+                                <li class="nav-item submenu dropdown ">
+                                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"style="color:black">WORK</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item" ><a class="nav-link" href="/fields"style="color:black">FIELDS</a>
+                                        <li class="nav-item"><a class="nav-link" href="/ngodetail"style="color:black">NGOs</a>
+                                       {% if user.is_authenticated %}   
+                                       <li class="nav-item "><a class="nav-link" href="/events" style="color:black">UPCOMING EVENTS</a> 
+                                        {% endif %}
+
+                                        
+                                    </ul>
+                                </li> 
+                               
+
+                                {% if user.is_authenticated %}
+                                <li class="nav-item"><a class="nav-link" href="/profile/"style="color:black">Profile</a>
+                                <li class="nav-item"><a class="nav-link" href="/logout/"style="color:black">LogOut</a>
+
+                                {% else %}
+
+                                <li class="nav-item"><a class="nav-link" href="/register"style="color:green">Register</a>
+                                <li class="nav-item"><a class="nav-link" href="/login" style="color:black">Log in</a>
+
+                                {% endif %}
+
+                                {% if user.is_authenticated %}
+
+                                <li class="nav-item"><a class="nav-link" href="/addQuestion" style="color: black">Discussion</a>
+
+                                {% else %}    
+
+                                <li class="nav-item"><a class="nav-link" href="/allQuestions"style="color:black">Discussion</a>
+
+                                {% endif %}    
+
+                                <li class="nav-item"><a class="nav-link" href="/contact"style="color:black">Contact</a></li>
+                            </ul>
+                        </div> 
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+        <!--================ End Header Menu Area =================-->
+        
+    <!--================Home Banner Area =================-->
+       <br><br><br>
+<div class="bg">
+    <div class="text-center" >
+       <br> 
+        <h1 style="color:indigo;">Register</h1>
+    </div> 
+</div>
+    <!--================End Home Banner Area =================-->
+    
+    <!--================Contact Area =================-->
+    <!-- <section class="contact_area section_gap"> -->
+        <br>
+        <div class="container">
+           
+            <div class="row">
+                <div class="col-lg-3">
+                
+                </div>
+                <div class="col-lg-9">
+                    <h2>{{message}}</h2>
+                    <form class="row contact_form" action="/register/" method="post" id="contactForm" novalidate="novalidate" autocomplete="off">
+                        {% csrf_token %}
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="first_name" name="first_name" required placeholder="First name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="contact" name="contact" required placeholder="Mobile number">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Address" required="true">
+                            </div>
+
+
+                            <div class="form-group">
+                                <select class="form-control" name="gender" required>
+                                    <option>Choose your Gender</option>
+                                    {% for i in allgender %}
+                                        <option value="{{i.id}}">{{i.name}}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                           <div class="form-group">
+                                <input type="number" class="form-control" id="age" name="age" required placeholder="Age">
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" name="interest" required>
+                                    <option>Choose your Interest</option>
+                                    {% for i in allinterest %}
+                                        <option value="{{i.id}}">{{i.name}}</option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="password" autocomplete="off">
+                            </div>
+
+                            <div class="text-right">
+                                <button type="submit" value="submit" class="btn primary_btn">Register</button>
+                            </div>
+                        <br> 
+
+                        </div>
+
+                        
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    <!-- </section> -->
+    <!--================Contact Area =================-->
+        
+	<!--================ Start Subscribe Area =================-->
+	
+    <!--================ End Subscribe Area =================-->
+        
+    <!--================ Start footer Area  =================-->	
+   <footer>
+        <div class="footer-area">
+            <div class="container">
+                <div class="row section_gap">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title large_title">Our Mission</h4>
+                            <p>
+                                To provide a common platform for faculty and students of BHU.To help the needy in different fields of their interests....
+                            </p>
+                            <p>
+                                Be the beacon of light in someone's darkness....  
+                            </p>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Quick Links</h4>
+                            <ul class="list">
+                                <li><a href="/home">Home</a></li>
+                                <li><a href="/fields">Fields</a></li>
+                                <li><a href="/ngodetail">NGOs</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a href="/events">Events</a></li>
+                                <li><a href="/logout/">LogOut</a></li>
+
+                                {% else %}
+                                <li><a href="/register">Register</a></li>
+                                <li><a href="/login/">LogIn</a></li>
+                                {% endif %}
+
+                                <li><a href="/contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Contact Us</h4>
+                            <div class="ml-40">
+                                <p class="sm-head">
+                                    <span class="fa fa-location-arrow"></span>
+                                    Head Office
+                                </p>
+                                <p>Department of Computer Science, Banaras Hindu University, Varanasi</p>
+    
+                                <p class="sm-head">
+                                    <span class="fa fa-phone"></span>
+                                    Phone Number
+                                </p>
+                                <p>
+                                    +123 456 7890 <br>
+                                    +123 456 7890
+                                </p>
+    
+                                <p class="sm-head">
+                                    <span class="fa fa-envelope"></span>
+                                    Email
+                                </p>
+                                <p>
+                                    akankshaupadhyay.alld@gmail.com <br>
+                                    poojayadav@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+    <!--================ End footer Area  =================-->
+    
+    <!--================Contact Success and Error message Area =================-->
+    <div id="success" class="modal modal-message fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-close"></i>
+                    </button>
+                    <h2>Thank you</h2>
+                    <p>Your message is successfully sent...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals error -->
+    <div id="error" class="modal modal-message fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-close"></i>
+                    </button>
+                    <h2>Sorry !</h2>
+                    <p> Something went wrong </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================End Contact Success and Error message Area =================-->
+        
+        
+        
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="/static/js/jquery-3.2.1.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="/static/js/mail-script.js"></script>
+        <!-- contact js -->
+        <script src="/static/js/jquery.validate.min.js"></script>
+        <script src="/static/js/contact.js"></script>
+        <!--gmaps Js-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+        <script src="/static/js/gmaps.min.js"></script>
+        <script src="/static/js/theme.js"></script>
+    </body>
+</html>

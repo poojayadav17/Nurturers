@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="/static/img/favicon.png" type="image/png">
+        <title>NURTURES</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/vendors/linericon/style.css">
+        <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="/static/vendors/nice-select/css/nice-select.css">
+        <!-- main css -->
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/responsive.css">
+    </head>
+    
+<body>
+        
+	<!--================ Start Header Menu Area =================-->
+<header class="header_area">
+        <div class="main_menu">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <a class="navbar-brand logo_h" href="#"><img src="/static/img/logo.ico" alt=""></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                            <ul class="nav navbar-nav menu_nav ml-auto">
+                                <li class="nav-item active "><a class="nav-link" href="/home">Home</a></li> 
+                                <li class="nav-item submenu dropdown ">
+                                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"style="color:black">WORK</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item" ><a class="nav-link" href="/fields"style="color:black">FIELDS</a>
+                                        <li class="nav-item"><a class="nav-link" href="/ngodetail"style="color:black">NGOs</a>
+                                       {% if user.is_authenticated %} 	
+                                       <li class="nav-item "><a class="nav-link" href="/events" style="color:black">UPCOMING EVENTS</a> 
+                                       	{% endif %}
+
+                                        
+                                    </ul>
+                                </li> 
+                               
+
+                                {% if user.is_authenticated %}
+                                <li class="nav-item"><a class="nav-link" href="/profile/"style="color:black">Profile</a>
+                                <li class="nav-item"><a class="nav-link" href="/logout/"style="color:black">LogOut</a>
+
+                                {% else %}
+
+                                <li class="nav-item"><a class="nav-link" href="/register"style="color:black">Register</a>
+                                <li class="nav-item"><a class="nav-link" href="/login" style="color:black">Log in</a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
+
+                                <li class="nav-item"><a class="nav-link" href="/addQuestion" style="color: black">Discussion</a>
+
+                                {% else %}
+                                
+                                <li class="nav-item"><a class="nav-link" href="/allQuestions"style="color:black">Discussion</a>
+                                 
+                                {% endif %}
+
+                                <li class="nav-item"><a class="nav-link" href="/contact"style="color:black">Contact</a></li>
+                            </ul>
+                        </div> 
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!--================ End Header Menu Area =================-->
+        
+
+	<!--================ Home Banner Area =================-->
+	<section class="home_banner_area">
+		<div class="banner_inner">
+			<div class="container">
+				<div class="banner_content">
+					<p class="upper_text">Give a hand</p>
+					<h2>to make the world better</h2>
+					<h3 style="color: white"><br><br>A person's most useful asset is not the head full of knowledge,<br> but a heart full of LOVE,<br> an ear ready to listen and a hand willing to HELP.
+				    </h3></br>
+				    
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ End Home Banner Area =================-->
+	
+	<!--================ Start Causes Area =================-->
+	<section class="causes_area">
+		<div class="container">
+			<div class="main_title">
+				<h2>What We Do</h2>
+				<p>You have two hands.One to help yourself,the second to HELP others.</p>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="single_causes">
+						<h4>Local Warriors</h4>
+						<img src="/static/img/causes/warriors.png" alt="">
+						<p>
+						   It's a common platform for all the people working individualy or in groups or in NGOs in or around BHU helping others in whichever way possible.
+						   Its a guiding portal for the students or staff of BHU who want to indulge in any social cause but don't know where to go.So here you can find NGOs based on your interest fields. 
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single_causes">
+						<h4>Social Events</h4>
+						<img src="/static/img/causes/event.png" alt="">
+						<p>
+                          Here we provide you information about all the upcoming events of social causes in or around BHU. Either you are organising any camp and need volunteers or you wanna spend your sunday helping underprivileged,join us and make a call for your event and get to know about many others.
+
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single_causes">
+						<h4>Join Discussion</h4>
+						<img src="/static/img/causes/gd.png" alt="">
+						<p>
+							"Wanna do too many things"<br>Have too many doubts:(<br> Dont be upset,just ASK:)<br>Here we are providing you a place to discuss the issuses you might be facing while indulging in any social cause.You can share your experiences to be a light barrier for others.
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ End Causes Area =================-->
+ 
+	
+
+	<!--================ Start Recent Event Area =================-->
+	<section class="event_area section_gap_custom">
+		<div class="container">
+			<div class="main_title">
+				<h2>Upcoming events</h2>
+				<p>Join us to know more about upcoming events in or around BHU</p>
+			</div>
+		
+			<div class="row">
+				{% for i in eve %}
+
+				<div class="col-lg-4 col-md-6">
+					<div class="single_causes">
+						<h4>{{i.eventTitle}}</h4>
+						<img src="/static/img/causes/event.png" alt="">
+						<p>
+                          {{i.eventDescription}}
+
+						</p>
+					</div>
+				</div>
+       			{% endfor %}  
+			
+
+				
+			</div>
+		</div>
+	</section>
+	<!--================ End Recent Event Area =================-->
+
+	<!--================Team Area =================-->
+	<section class="team_area section_gap">
+		<div class="container">
+			<div class="main_title">
+				<h2>LISTEN FROM PALADIN</h2>
+			</div>
+			<div class="row team_inner">
+				<div class="col-lg-3 col-md-6">
+					<div class="team_item">
+						<div class="team_img">
+							<img class="img-fluid" src="/static/img/voluteer/manish.jpg" alt="">
+						</div>
+						<div class="team_name">
+							<h4>Manish Rai</h4>
+							<p>M.A.(hist. hons) student<br>
+							WORKED IN MCWC</p>
+							<p class="mt-20">
+								it was wonderful.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6">
+					<div class="team_item">
+						<div class="team_img">
+							<img class="img-fluid" src="/static/img/voluteer/yashi1.jpg" alt="">
+						</div>
+						<div class="team_name">
+							<h4>Yeshasvi Gupta</h4>
+							<p>B.Sc(maths hons) student<br>
+							WORKING IN MCWC</p>
+							<p class="mt-20">
+							My experince of working with ngo was great. While teaching children not only you give your time and knowledge but you also gain an experience when dealing with them.
+
+							</p>
+							
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6">
+					<div class="team_item">
+						<div class="team_img">
+							<img class="img-fluid" src="/static/img/voluteer/shivani.png" alt="">
+						</div>
+						<div class="team_name">
+							<h4>Shivani Agrahari</h4>
+							<p>B.Sc(maths hons) student<br>
+							   WORKED IN ABHIKALPANA</p>
+							<p class="mt-20">
+								It was a wonderful experience <br>
+								Life's one of the best choice.
+								.
+							</p>
+							
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-3 col-md-6">
+					<div class="team_item">
+						<div class="team_img">
+							<img class="img-fluid" src="/static/img/voluteer/deeksha1.jpg" alt="">
+						</div>
+						<div class="team_name">
+							<h4>Deeksha</h4>
+							<p>B.A(eng hons) student<br>
+							WORKING IN ROOBINHOOD ARMY</p>
+							<p class="mt-20">
+								Previleged by working with them for a better future.
+							</p>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Team Area =================-->
+
+	<!--================ Start CTA Area =================-->
+	<div class="cta-area section_gap overlay">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-7">
+					<h1>Become a volunteer</h1>
+					<p>
+						As long as you are standing, give a hand to thode who have fallen.
+					</p>
+					<a href="/register" class="primary_btn yellow_btn rounded">join with us</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--================ End CTA Area =================-->
+	<!--================ Start footer Area  =================-->	
+	<footer>
+        <div class="footer-area">
+            <div class="container">
+                <div class="row section_gap">
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title large_title">Our Mission</h4>
+                            <p>
+                                To provide a common platform for faculty and students of BHU.To help the needy in different fields of their interests....
+                            </p>
+                            <p>
+                                Be the beacon of light in someone's darkness....  
+                            </p>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Quick Links</h4>
+                            <ul class="list">
+                                <li><a href="/home">Home</a></li>
+                                <li><a href="/fields">Fields</a></li>
+                                <li><a href="/ngodetail">NGOs</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a href="/events">Events</a></li>
+                                <li><a href="/logout/">LogOut</a></li>
+
+                                {% else %}
+                                <li><a href="/register">Register</a></li>
+                                <li><a href="/login/">LogIn</a></li>
+                                {% endif %}
+
+                                <li><a href="/contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget tp_widgets">
+                            <h4 class="footer_title">Contact Us</h4>
+                            <div class="ml-40">
+                                <p class="sm-head">
+                                    <span class="fa fa-location-arrow"></span>
+                                    Head Office
+                                </p>
+                                <p>Department of Computer Science, Banaras Hindu University, Varanasi</p>
+    
+                                <p class="sm-head">
+                                    <span class="fa fa-phone"></span>
+                                    Phone Number
+                                </p>
+                                <p>
+                                    +123 456 7890 <br>
+                                    +123 456 7890
+                                </p>
+    
+                                <p class="sm-head">
+                                    <span class="fa fa-envelope"></span>
+                                    Email
+                                </p>
+                                <p>
+                                    akankshaupadhyay.alld@gmail.com <br>
+                                    poojayadav@gmail.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </footer>
+	<!--================ End footer Area  =================-->
+	
+	
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="/static/js/jquery-3.2.1.min.js"></script>
+	<script src="/static/js/popper.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+	<script src="/static/js/stellar.js"></script>
+	<script src="/static/vendors/lightbox/simpleLightbox.min.js"></script>
+	<script src="/static/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+	<script src="/static/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/static/js/mail-script.js"></script>
+	<script src="/static/js/countdown.js"></script>
+	<!--gmaps Js-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+	<script src="/static/js/gmaps.min.js"></script>
+	<script src="/static/js/theme.js"></script>
+</body>
+</html>
